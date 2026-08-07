@@ -4,13 +4,19 @@ function Body() {
     //setCaracteristicas es el nombre que le estamos dando al segundo parametro que nos da useState que es un funcion
     //usamos useState para hacer el re-rendering de la pagina (nuestro html)automaticamente con los valores cambiados
     const [caracteristicas, setCaracteristicas] = useState([]);
+    const [comentario, setcomentario] = useState([]);
 
     function añadirCaracteristica(formData) {
        //Ya no hace falta hacer un prevent default porque usamos un action
         //guardamos el input y luego lo vaciamos
-        const nuevaCaracteristica = formData.get("name")
-        setCaracteristicas(p => [...p, nuevaCaracteristica]);
+        const nuevaCaracteristica = formData.get("caracteristica");
+        const comentario = formData.get("comentario");
+        if(nuevaCaracteristica.trim() || comentario.trim()){
+            const completeInfo = comentario !== "" ? `${nuevaCaracteristica} Comentario: ${comentario}` : nuevaCaracteristica; 
+            setCaracteristicas(p => [...p, completeInfo]);
 
+        }
+        
     }
 
     function quitarCaracteristica(index) {
@@ -20,15 +26,21 @@ function Body() {
 
     return(
         <>
-        <form className=" flex border-[1px] items-center justify-center pb-[20px] pt-[20px]" action={añadirCaracteristica}>
+        <form className=" flex flex-col border-[1px]" action={añadirCaracteristica}>
+            <div className="flex items-center gap-2 mb-4">
+                <input name="caracteristica" className="border-[1px] m-[5px] ml-[20px] mr-[10px] grow" type="text" placeholder="Peligroso"></input>
+                <button className={buttonstyle}>+ Añadir</button> 
+            </div>
+            <div className="flex items-center gap-2 mb-4">
+                <textarea name="comentario" className="border-[1px] m-[5px] ml-[20px] mr-[10px] grow"placeholder="Tengo vertigo"></textarea>
+                <button className={buttonstyle}>+ Añadir</button> 
+            </div>
             
-            <input name="caracteristica" className="border-[1px] m-[5px] ml-[20px] mr-[10px] grow"aria-label="Añade caracteristica" type="text" placeholder="Peligroso"></input>
-            <button className={buttonstyle}>+ Añadir</button>
             
         </form>
-        <h1 className="text-center">Caracteristicas del viaje:</h1>
+        <h1 className="text-center mt-4 text-[2em]">Caracteristicas del viaje:</h1>
             <ul className="text-center">  
-                {caracteristicas.map((caracteristica, index) => <li key={index} onClick={() => quitarCaracteristica(index)}>{caracteristica}</li>)}
+                {caracteristicas.map((caracteristica, index) => <li key={index} onClick={() => quitarCaracteristica(index)}>{index + 1} .{caracteristica}</li>)}
             </ul>
         </>
     );
