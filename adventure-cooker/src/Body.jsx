@@ -27,11 +27,13 @@ function Body() {
     return(
         <>
         <form className=" flex flex-col border-[1px]" action={añadirCaracteristica}>
-            <div className="flex items-center gap-2 mb-4">
-                <input name="caracteristica" className="border-[1px] m-[5px] ml-[20px] mr-[10px] grow" type="text" placeholder="Peligroso"></input>
+            <div className="flex items-center gap-2 mb-4 ml-2">
+                <label htmlFor="caracteristica">Caracteristica: </label>
+                <input name="caracteristica" className="border-[1px] m-[5px] ml-[10px] mr-[10px] grow" type="text" placeholder="Peligroso"></input>
                 <button className={buttonstyle}>+ Añadir</button> 
             </div>
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-4 ml-2">
+                <label htmlFor="comentario">Comentario: </label>
                 <textarea name="comentario" className="border-[1px] m-[5px] ml-[20px] mr-[10px] grow"placeholder="Tengo vertigo"></textarea>
                 <button className={buttonstyle}>+ Añadir</button> 
             </div>
