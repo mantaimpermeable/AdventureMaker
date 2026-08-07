@@ -6,6 +6,8 @@ function Body() {
     const [caracteristicas, setCaracteristicas] = useState([]);
     const [comentario, setcomentario] = useState([]);
 
+    const listaCaracteristicas = caracteristicas.map((caracteristica, index) => <li key={index} onClick={() => quitarCaracteristica(index)}>{index + 1} .{caracteristica}</li>)
+
     function añadirCaracteristica(formData) {
        //Ya no hace falta hacer un prevent default porque usamos un action
         //guardamos el input y luego lo vaciamos
@@ -40,10 +42,25 @@ function Body() {
             
             
         </form>
-        <h1 className="text-center mt-4 text-[2em]">Caracteristicas del viaje:</h1>
-            <ul className="text-center">  
-                {caracteristicas.map((caracteristica, index) => <li key={index} onClick={() => quitarCaracteristica(index)}>{index + 1} .{caracteristica}</li>)}
-            </ul>
+        { caracteristicas.length > 0 ?
+            <section>
+                <h1 className="text-center mt-4 text-[2em]">Caracteristicas del viaje:</h1>
+                <ul className="text-center">{listaCaracteristicas}</ul>
+                { caracteristicas.length > 3 ? 
+                    <div className="flex border-[1px] round-[5px] m-4">
+                        <div>
+                            <h3>Ya has terminado de planear?</h3>
+                            <p>Consigue tu viaje esperado</p>
+                        </div>
+                        <div>
+                            <button className="border-[1px] bg-orange-500 hover:bg-orange-400 rounded[5px]">Generar</button>
+                        </div>
+
+                    </div>
+                    : null}
+            </section> 
+            : null} 
+       
         </>
     );
 
