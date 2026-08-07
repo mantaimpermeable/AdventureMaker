@@ -5,11 +5,10 @@ function Body() {
     //usamos useState para hacer el re-rendering de la pagina (nuestro html)automaticamente con los valores cambiados
     const [caracteristicas, setCaracteristicas] = useState([]);
 
-    function añadirCaracteristica(event) {
-        event.preventDefault(); //Para evitar que la pagina se recargue
+    function añadirCaracteristica(formData) {
+       //Ya no hace falta hacer un prevent default porque usamos un action
         //guardamos el input y luego lo vaciamos
-        const nuevaCaracteristica = document.getElementById("caracteristica").value;
-        document.getElementById("caracteristica").value="";
+        const nuevaCaracteristica = formData.get("name")
         setCaracteristicas(p => [...p, nuevaCaracteristica]);
 
     }
@@ -21,9 +20,9 @@ function Body() {
 
     return(
         <>
-        <form className=" flex border-[1px] items-center justify-center pb-[20px] pt-[20px]" onSubmit={añadirCaracteristica}>
+        <form className=" flex border-[1px] items-center justify-center pb-[20px] pt-[20px]" action={añadirCaracteristica}>
             
-            <input id="caracteristica" className="border-[1px] m-[5px] ml-[20px] mr-[10px] grow"aria-label="Añade caracteristica" type="text" placeholder="Peligroso"></input>
+            <input name="caracteristica" className="border-[1px] m-[5px] ml-[20px] mr-[10px] grow"aria-label="Añade caracteristica" type="text" placeholder="Peligroso"></input>
             <button className={buttonstyle}>+ Añadir</button>
             
         </form>
