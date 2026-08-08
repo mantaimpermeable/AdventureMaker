@@ -1,16 +1,19 @@
 import { useState } from "react";
+import Caracteristics from "./Caracteristics";
+import Adventure from "./Adventure";
+
 function Body() {
     const buttonstyle="m-[5px] border-[1px] p-[2px] bg-gray-400 hover:bg-gray-300 rounded-[10px]"
     //setCaracteristicas es el nombre que le estamos dando al segundo parametro que nos da useState que es un funcion
     //usamos useState para hacer el re-rendering de la pagina (nuestro html)automaticamente con los valores cambiados
     const [caracteristicas, setCaracteristicas] = useState([]);
-    const [comentario, setcomentario] = useState([]);
+    const [shown, setShown] = useState([false]);
 
     function añadirCaracteristica(formData) {
        //Ya no hace falta hacer un prevent default porque usamos un action
-        //guardamos el input y luego lo vaciamos
-        const nuevaCaracteristica = formData.get("caracteristica");
-        const comentario = formData.get("comentario");
+       //guardamos el input y luego lo vaciamos
+       const comentario = formData.get("comentario");
+       const nuevaCaracteristica = formData.get("caracteristica");
         if(nuevaCaracteristica.trim() || comentario.trim()){
             const completeInfo = comentario !== "" ? `${nuevaCaracteristica} Comentario: ${comentario}` : nuevaCaracteristica; 
             setCaracteristicas(p => [...p, completeInfo]);
@@ -22,6 +25,10 @@ function Body() {
     function quitarCaracteristica(index) {
         //filtramos el array de caracteristicas y solo imprimimos los distintos al index que queremos borrar
         setCaracteristicas(caracteristicas.filter((_,i) => i !== index));
+    };
+
+    function isShown(){
+        setShown(prevShown => !prevShown);
     }
 
     return(
@@ -40,10 +47,9 @@ function Body() {
             
             
         </form>
-        <h1 className="text-center mt-4 text-[2em]">Caracteristicas del viaje:</h1>
-            <ul className="text-center">  
-                {caracteristicas.map((caracteristica, index) => <li key={index} onClick={() => quitarCaracteristica(index)}>{index + 1} .{caracteristica}</li>)}
-            </ul>
+        { caracteristicas.length > 0  ?  <Caracteristics caracteristicas={caracteristicas} quitarCaracteristica={quitarCaracteristica} isShown={isShown}/> : null} 
+        { shown && <Adventure></Adventure> }
+
         </>
     );
 
