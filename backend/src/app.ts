@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 import userRoutes from './routes/userRoutes.js';
+import errorHandler from './middleware/errorHandler.js';
 
 const app: Application = express();
 
@@ -15,5 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}))
 
 app.use('/user', userRoutes);
+
+//manejamos todos los errores que puedan ocurrir en la aplicacion
+app.use(errorHandler);
 
 export default app;
