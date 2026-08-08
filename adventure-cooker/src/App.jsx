@@ -1,11 +1,12 @@
-import Header from './Header.jsx'
-import Body from './Body.jsx'
+import { Route, Routes } from 'react-router-dom'
+import Generator from './pages/Generator.jsx';
 function App() {
 
   return (
     <>
-    <Header></Header>
-    <Body></Body>
+    <Routes>
+      <Route path="/adventure" element={<Generator />}/>
+    </Routes>
     </>
   );
 }

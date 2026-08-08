@@ -1,4 +1,4 @@
-import dora from './assets/image.png'
+import dora from '../assets/image.png'
 
 function Header() {
     return(
