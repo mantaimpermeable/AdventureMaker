@@ -7,7 +7,7 @@ function Body() {
     //setCaracteristicas es el nombre que le estamos dando al segundo parametro que nos da useState que es un funcion
     //usamos useState para hacer el re-rendering de la pagina (nuestro html)automaticamente con los valores cambiados
     const [caracteristicas, setCaracteristicas] = useState([]);
-    const [shown, setShown] = useState([false]);
+    const [adventures, setAdventure] = useState("");
 
     function añadirCaracteristica(formData) {
        //Ya no hace falta hacer un prevent default porque usamos un action
@@ -27,8 +27,11 @@ function Body() {
         setCaracteristicas(caracteristicas.filter((_,i) => i !== index));
     };
 
-    function isShown(){
-        setShown(prevShown => !prevShown);
+    async function getAdventure(){
+        const data = await fetch("http://localhost:3313/api/user/adventure");
+        const json = await data.json();
+        const adventure = json.adventure;
+        setAdventure(adventure);
     }
 
     return(
@@ -47,8 +50,8 @@ function Body() {
             
             
         </form>
-        { caracteristicas.length > 0  ?  <Caracteristics caracteristicas={caracteristicas} quitarCaracteristica={quitarCaracteristica} isShown={isShown}/> : null} 
-        { shown && <Adventure></Adventure> }
+        { caracteristicas.length > 0  ?  <Caracteristics caracteristicas={caracteristicas} quitarCaracteristica={quitarCaracteristica} getAdventure={getAdventure} adventure={adventures}/> : null} 
+        
 
         </>
     );

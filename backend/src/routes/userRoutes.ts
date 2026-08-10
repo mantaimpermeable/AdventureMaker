@@ -3,6 +3,6 @@ import advGenerator from "../controllers/advGenerator.js";
 
 const userRoutes = Router();
 
-userRoutes.get('/adventure', advGenerator);
+userRoutes.post('/adventure', advGenerator);
 
 export default userRoutes;

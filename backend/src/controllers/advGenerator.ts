@@ -5,10 +5,12 @@ import { advGeneration } from "../services/advGeneratorService.js";
 const advGenerator = async (req: Request, res:Response, next: NextFunction) => {
     //antes de nada extraeremos la informacion del body que vendra como un array y lo uniremos en un string
     try {
-        const generator = advGeneration as any;
-        const service = await generator.generate(req.body.caracteristics);
-        res.status(200).json(service);
+        const generator = new advGeneration();
+        const service: string = await generator.generate(req.body.caracteristics);
+        return res.status(200).json({ adventure: service });
+        
     } catch (error) {
+        console.log("Error en el controlador");
         //mandamos el error a un middleware
         next(error);
     }

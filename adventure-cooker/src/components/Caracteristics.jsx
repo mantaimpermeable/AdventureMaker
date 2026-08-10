@@ -1,3 +1,5 @@
+import Adventure from "./Adventure";
+
 function Caracteristics(props) {
      
     const listaCaracteristicas = props.caracteristicas.map((caracteristica, index) => <li key={index} onClick={() => props.quitarCaracteristica(index)}>{index + 1} .{caracteristica}</li>);
@@ -14,11 +16,12 @@ function Caracteristics(props) {
                             <p className="text-[0.875em]">Consigue tu viaje esperado</p>
                         </div>
                         <div>
-                            <button className="border-[1px] bg-orange-500 hover:bg-orange-400 rounded-[5px]" onClick={props.isShown}>Generar</button>
+                            <button className="border-[1px] bg-orange-500 hover:bg-orange-400 rounded-[5px]" onClick={props.getAdventure}>Generar</button>
                         </div>
 
                     </div>
                     : null}
+                { props.adventure ? <Adventure adventure={props.adventure} /> : null }
             </section> 
         </>
      );

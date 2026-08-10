@@ -15,7 +15,8 @@
     "@huggingface/inference": "^4.13.25",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "react-markdown": "^10.1.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
