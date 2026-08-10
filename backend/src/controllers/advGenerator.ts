@@ -5,8 +5,9 @@ import { advGeneration } from "../services/advGeneratorService.js";
 const advGenerator = async (req: Request, res:Response, next: NextFunction) => {
     //antes de nada extraeremos la informacion del body que vendra como un array y lo uniremos en un string
     try {
-        const service = await advGenerator
-        
+        const generator = advGeneration as any;
+        const service = await generator.generate(req.body.caracteristics);
+        res.status(200).json(service);
     } catch (error) {
         //mandamos el error a un middleware
         next(error);

@@ -15,7 +15,7 @@ app.use(express.json());
 //si no usamos urlencoded el body de la request estara vacia y no podremos mirar la informacion
 app.use(express.urlencoded({ extended: true}))
 
-app.use('/user', userRoutes);
+app.use('/api/user', userRoutes);
 
 //manejamos todos los errores que puedan ocurrir en la aplicacion
 app.use(errorHandler);
