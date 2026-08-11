@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Caracteristics from "./Caracteristics";
 import Adventure from "./Adventure";
 
@@ -8,6 +8,14 @@ function Body() {
     //usamos useState para hacer el re-rendering de la pagina (nuestro html)automaticamente con los valores cambiados
     const [caracteristicas, setCaracteristicas] = useState([]);
     const [adventures, setAdventure] = useState("");
+    const adventureSection = useRef(null);
+
+    useEffect(() => {
+    if(adventures !== "" && adventureSection.current !== null) {
+    adventureSection.current.scrollIntoView({ behavior: "smooth" });
+    }
+    }, [adventures]);
+
 
     function añadirCaracteristica(formData) {
        //Ya no hace falta hacer un prevent default porque usamos un action
@@ -32,7 +40,8 @@ function Body() {
         const json = await data.json();
         const adventure = json.adventure;
         setAdventure(adventure);
-    }
+    };
+
 
     return(
         <>
@@ -50,7 +59,16 @@ function Body() {
             
             
         </form>
-        { caracteristicas.length > 0  ?  <Caracteristics caracteristicas={caracteristicas} quitarCaracteristica={quitarCaracteristica} getAdventure={getAdventure} adventure={adventures}/> : null} 
+        { caracteristicas.length > 0  ?  
+            <Caracteristics 
+                caracteristicas={caracteristicas} 
+                quitarCaracteristica={quitarCaracteristica} 
+                getAdventure={getAdventure} 
+                adventure={adventures}
+                adventureSection={adventureSection}
+                />
+                                            
+        : null} 
         
 
         </>

@@ -11,7 +11,7 @@ function Caracteristics(props) {
                 <ul className="text-center">{listaCaracteristicas}</ul>
                 { props.caracteristicas.length > 3 ? 
                     <div className="flex border-[1px] rounded-[5px] m-4 p-3 items-center justify-between">
-                        <div>
+                        <div ref={props.adventureSection}>
                             <h3 className="text-[1.125em]">Ya has terminado de planear?</h3> 
                             <p className="text-[0.875em]">Consigue tu viaje esperado</p>
                         </div>
