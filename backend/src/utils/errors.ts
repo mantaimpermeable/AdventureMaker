@@ -13,6 +13,25 @@ export class AppError extends Error {
 
 };
 
+//error for problems accesing data of user input
+export class DataCollectionError extends AppError {
+    constructor(cause: string, message: string) {
+        super(cause, message, 400);
+
+        this.name = "DataCollectionError";
+    };
+};
+
+//erro al hacer algun proceso logico en los servicios
+export class ServiceError extends AppError {
+    constructor(cause: string, message: string) {
+        super(cause, message, 500);
+
+        this.name = "ServiceError";
+    }
+};
+
+//error for ai model generation of adventure
 export class GenerationError extends AppError {
     constructor(cause: string, message: string) {
         super(cause, message, 500);
