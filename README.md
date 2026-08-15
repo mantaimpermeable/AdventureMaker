@@ -4,10 +4,17 @@ Adventure maker is a project with the purpose of refreshing my frontend skills i
 Adventure maker builds you a trip based on a list of things you consider your trip must have, you can also leave comments so it takes them 
 into account.
 ### Functionalities done or TODO
-Create/Login a user
-Database with users and adventures created
-Easy and intuitive navigation between routes
-Page to see created adventures and option to mark as done/pending or just idea
-A change your password page (not recover, dont know how to do verification)
-Page to edit manually the adventure saved
+<ul>
+<li>Create/Login a user</li>
+<li>Database with users and adventures created</li>
+<li>Easy and intuitive navigation between routes</li>
+<li>Page to see created adventures and option to mark as done/pending or just idea</li>
+<li>A change your password page (not recover, dont know how to do verification)</li>
+<li>Page to edit manually the adventure saved</li>
+</ul>
+
+
+
+
+
 
