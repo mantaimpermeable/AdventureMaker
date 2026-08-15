@@ -1,4 +1,4 @@
-import { InferenceClient } from "@huggingface/inference";
+import Groq from "groq-sdk";
 import { DataCollectionError, GenerationError, ServiceError } from "../types/errors.types.js";
 
 export default class advGeneration {
@@ -14,15 +14,15 @@ export default class advGeneration {
         const message: string = caracteristics.join(", ");
         if(!message) throw new ServiceError("No message to send to the model", "The message is empty after joining the caracteristics array");
 
-        const hf: InferenceClient = new InferenceClient(process.env.HUGGING_FACE_API_KEY);
-            const response = await hf.chatCompletion({
-                model: "Qwen/Qwen2.5-3B-Instruct",
-                messages:[
-                    { role: "system", content: SYSTEM_PROMPT},
-                    { role: "user", content: `I want you to make me a trip that takes into account: ${message}`}
-                ],
-                 max_tokens: 1500
-            }); 
+        const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+        const response = await groq.chat.completions.create({
+            "messages": [
+                        { "role": "system", "content": SYSTEM_PROMPT },
+                        { "role": "user", "content": `Crea un viaje con: ${message}` }
+                    ],
+            "model": "llama-3.3-70b-versatile", 
+            
+  });
         if(!response) throw new GenerationError("No response from the model", "The model did not return any response");
 
             // const choice = response?.choices?.[0];

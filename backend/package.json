@@ -15,6 +15,7 @@
     "@huggingface/inference": "^4.13.25",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
+    "groq-sdk": "^1.5.0",
     "nodemon": "^3.1.14",
     "pino": "^10.3.1",
     "react-markdown": "^10.1.0"

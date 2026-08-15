@@ -3,5 +3,5 @@ POST http://localhost:3313/api/user/adventure
 Content-Type: application/json
 
 {
-    "caracteristics": ["un bosque encantado", "Poco presupuesto", "Viaje familiar", "pais europeo", "actividadews de aventura", "viaje de 3 dias"]
+    "caracteristics":["un bosque encantado", "Poco presupuesto", "Viaje familiar", "pais europeo", "actividadews de aventura", "viaje de 3 dias"]
 }
