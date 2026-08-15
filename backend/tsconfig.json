@@ -28,8 +28,11 @@
     "noUncheckedIndexedAccess": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node"]
+    "types": ["node"],
+    // files to search for types definitions
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   },
-  "include": ["src/**/*"],
+  //include the global types file
+  "include": ["src/**/*", "src/**/*.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

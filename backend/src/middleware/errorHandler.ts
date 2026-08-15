@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import logger from "../utils/logger.js";
-import { AppError } from "../utils/errors.js"; 
+import { AppError } from "../types/errors.types.js"; 
 //As every error extends from AppError we can use it to check all of our personlized errors
 
 const errorHandler = (error: any, req: Request, res: Response, next: NextFunction) => {

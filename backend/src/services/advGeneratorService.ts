@@ -1,7 +1,7 @@
 import { InferenceClient } from "@huggingface/inference";
-import { DataCollectionError, GenerationError, ServiceError } from "../utils/errors.js";
+import { DataCollectionError, GenerationError, ServiceError } from "../types/errors.types.js";
 
-export class advGeneration {
+export default class advGeneration {
     
     async generate(caracteristics: string[]) {
         if (!caracteristics || caracteristics.length === 0) throw new DataCollectionError("No caracteristics provided", "The caracteristics array is empty or undefined");
@@ -32,3 +32,5 @@ export class advGeneration {
     };
 
 }
+
+// export default advGeneration;
