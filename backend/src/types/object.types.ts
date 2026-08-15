@@ -4,8 +4,15 @@ export type User = {
     username: string;
     password: string;
     role: UserRole;
+    token?: string;
     createdAt: Date;
     lastLogin: Date;
 };
 
-//TODO an adventure type
+export type Adventure = {
+    id: number,
+    userId: number,
+    adventure: string,
+    title: string,
+    status: adventureStatus,
+};

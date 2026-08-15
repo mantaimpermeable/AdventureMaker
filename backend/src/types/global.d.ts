@@ -9,17 +9,18 @@ declare global{
 
     //declare global types
     type UserRole = "admin" | "user" ;
+    type adventureStatus = "pending" | "done" | "idea";
 
     namespace Express {
         interface Request {
             user?: {
-                id: string;
+                id: number;
                 username: string;
                 password: string;
                 role: UserRole;
             };
             verifiedU?: {
-                id: string;
+                id: number;
                 username: string;
                 token: string;
                 role: UserRole;
