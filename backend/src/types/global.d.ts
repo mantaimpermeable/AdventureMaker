@@ -15,10 +15,18 @@ declare global{
             user?: {
                 id: string;
                 username: string;
+                password: string;
                 role: UserRole;
             };
+            verifiedU?: {
+                id: string;
+                username: string;
+                token: string;
+                role: UserRole;
+            }
         }
-    }
+    };
+
 }
 
 export {};
