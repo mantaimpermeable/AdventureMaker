@@ -3,7 +3,12 @@ declare global{
     namespace NodeJS {
         interface ProcessEnv {
             PORT: string;
-            HUGGINGFACE_API_KEY: string;
+            GROQ_API_KEY: string;
+            DB_HOST: string;
+            DB_NAME: string;
+            DB_PASSWORD: string;
+            DB_USER: string;
+            
         }   
     };
 
