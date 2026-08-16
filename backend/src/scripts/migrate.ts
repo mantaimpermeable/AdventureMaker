@@ -15,7 +15,7 @@ const runMigrations = async () => {
     const migration = new Migration({
         conn: connection,
         tableName: 'Migrations',
-        dir: 'src/migrations'
+        dir: 'src/migrations/'
 
     });
 
