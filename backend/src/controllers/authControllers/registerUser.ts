@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import  { registerUserService } from '../services/index.js';
-import { User, RegisterUserData } from '../types/object.types.js';
-import { Database } from '../database/Database.js';
+import  { registerUserService } from '../../services/index.js';
+import { User, RegisterUserData } from '../../types/object.types.js';
+import { Database } from '../../database/Database.js';
 
 /*
     Controller for the registration of a user request, it extracts the whole .user extended type of the request in a const and tries to

@@ -29,7 +29,8 @@ export class ExistingDataError extends AppError {
 
         this.name = "ExistingDataError"
     }
-}
+};
+
 
 //erro al hacer algun proceso logico en los servicios
 export class ServiceError extends AppError {
