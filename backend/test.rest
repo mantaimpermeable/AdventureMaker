@@ -5,3 +5,13 @@ Content-Type: application/json
 {
     "caracteristics":["un bosque encantado", "Poco presupuesto", "Viaje familiar", "pais europeo", "actividadews de aventura", "viaje de 3 dias"]
 }
+
+### POST create a new user
+POST http://localhost:3313/api/user/auth/register
+Content-Type: application/json
+
+{
+    "username": "Bomboclat",
+    "password": "Mariadb3"
+}
+

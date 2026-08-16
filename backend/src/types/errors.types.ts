@@ -22,6 +22,15 @@ export class DataCollectionError extends AppError {
     };
 };
 
+//error de datos existentes o en conflicto en la base de datos
+export class ExistingDataError extends AppError {
+    constructor(cause: string, message: string){
+        super(cause, message, 400);
+
+        this.name = "ExistingDataError"
+    }
+}
+
 //erro al hacer algun proceso logico en los servicios
 export class ServiceError extends AppError {
     constructor(cause: string, message: string) {
