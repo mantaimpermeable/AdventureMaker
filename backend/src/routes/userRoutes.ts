@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { advGenerator, registerUser } from "../controllers/index.js";
+import { advGenerator } from "../controllers/userControllers/index.js";
+import { registerUser } from '../controllers/authControllers/index.js'
 
 const userRoutes = Router();
 

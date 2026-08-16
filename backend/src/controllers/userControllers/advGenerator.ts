@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction} from "express"
-import { advGeneratorService } from "../services/index.js";
-import { GenerationError } from "../types/errors.types.js";
-import { Adventure } from "../types/object.types.js"; 
+import { advGeneratorService } from "../../services/index.js";
+import { GenerationError } from "../../types/errors.types.js";
+import { Adventure } from "../../types/object.types.js"; 
 
 const advGenerator = async (req: Request, res:Response, next: NextFunction) => {
     //antes de nada extraeremos la informacion del body que vendra como un array y lo uniremos en un string
