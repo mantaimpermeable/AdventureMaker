@@ -23,8 +23,7 @@
     "mysql2": "^3.23.3",
     "nodemon": "^3.1.14",
     "pino": "^10.3.1",
-    "react-markdown": "^10.1.0",
-    "ts-mysql-migrate": "^1.1.2"
+    "react-markdown": "^10.1.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",

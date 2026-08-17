@@ -1,9 +1,8 @@
 import { fileURLToPath } from 'url';
 import path from 'path';
-import fs from 'fs' //filesystem para manipular archivos de nuestro servidor
+import fs from 'fs/promises' //filesystem para manipular archivos de nuestro servidor
 import { pool } from "../database/Database.js";
 import dotenv from 'dotenv';
-import { QueryResult } from 'mysql2';
 
 dotenv.config();
 
@@ -12,7 +11,6 @@ const __filename: string = fileURLToPath(import.meta.url); //fileURLToPath conve
 const __dirname: string = path.dirname(__filename); //now we store our directory location instead of our actual file
 
 const runMigrations = async () => {
-    //Console logs to see the process is running
     
     const migrationDir: string = path.join(__dirname, "../migrations/sql");//Now we save the direction of the migrations directory
     
@@ -25,15 +23,14 @@ const runMigrations = async () => {
         await pool.query(`
             CREATE TABLE IF NOT EXISTS migrations (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                name VARCHAR(255) NOT NULL,
+                name VARCHAR(100) NOT NULL,
                 applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         `);
 
         console.log("Tabla de migraciones operativa");
 
-
-        const files: string[] = fs.readdirSync(migrationDir)
+        const files: string[] = await fs.readdir(migrationDir)
         
         //if there isnt any migration files
         if(files.length === 0){
@@ -56,14 +53,14 @@ const runMigrations = async () => {
 
             console.log(`Aplicando: ${file}`);
             //read the file inside the migration directory
-            const sql = fs.readFileSync(path.join(migrationDir, file), 'utf8');
+            const sql = await fs.readFile(path.join(migrationDir, file), 'utf8');
             
             //execute the migration
             await pool.query(sql);
 
             //save into the migration table
             await pool.query(
-                'INSERT INTO migrations (name) VALUES ?',
+                'INSERT INTO migrations (name) VALUES (?)',
                 [file]
             );
             console.log(`${file} aplicado`);
