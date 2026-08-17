@@ -12,9 +12,9 @@ export const pool = mysql.createPool({
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
-});
+}).promise();
 
-export const poolPromise = pool.promise();
+
 
 //use interface to extend an existing data type
 interface userRow extends RowDataPacket {
@@ -29,7 +29,7 @@ export class Database {
     //function to find a user by its username
     //we use the ?? operator to convert undefined to null so it matches the promise type 
     async findByUsername( username: string ): Promise<userRow | null> {
-        const [row] = await poolPromise.query<userRow[]>(
+        const [row] = await pool.query<userRow[]>(
           `SELECT * FROM users WHERE username = ?`, [username]
         );
         return row[0] ?? null ;
@@ -38,7 +38,7 @@ export class Database {
     //function to fnind a user by its id
     // ?? = nullish coalescing
     async findById( id: number): Promise<userRow | null> {
-        const [row] = await poolPromise.query<userRow[]>(
+        const [row] = await pool.query<userRow[]>(
         `SELECT * FROM users WHERE id = ?`, [id]
         );
         return row[0] ?? null;
@@ -47,7 +47,7 @@ export class Database {
     //function to create a user with username and password
     //ResultSetHeader allow us to access the data of the recently added row
     async createUser ( username: string, password: string ): Promise<number | null> {
-        const [result] = await poolPromise.query<ResultSetHeader>(
+        const [result] = await pool.query<ResultSetHeader>(
         `INSERT INTO users (username, password) VALUES (?,?)`, [username, password]
         );
         return result.affectedRows < 1 ? null : result.insertId;
@@ -55,7 +55,7 @@ export class Database {
 
     //function to delete a user by its id
     async deleteUser ( id: number): Promise<boolean> {
-        const [result] = await poolPromise.query<ResultSetHeader>(
+        const [result] = await pool.query<ResultSetHeader>(
         `DELETE FROM users WHERE id = ?`, [id]
         );
         return result.affectedRows > 0;
