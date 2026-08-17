@@ -34,7 +34,7 @@ const runMigrations = async () => {
         
         //if there isnt any migration files
         if(files.length === 0){
-            console.log("No hay ninguna migracion que aplicar");
+            console.log("🤡 No hay ninguna migracion que aplicar");
             process.exit(0)
         };
 
@@ -47,7 +47,7 @@ const runMigrations = async () => {
 
             //if existing is an array and has any element we skip this migration
              if (Array.isArray(existing) && existing.length > 0) {
-                console.log(` ${file} ya aplicada, saltando...`);
+                console.log(`🤣 ${file} ya aplicada, saltando...`);
                 continue;
             };
 
@@ -63,16 +63,16 @@ const runMigrations = async () => {
                 'INSERT INTO migrations (name) VALUES (?)',
                 [file]
             );
-            console.log(`${file} aplicado`);
+            console.log(`✅ ${file} aplicado`);
         };
 
         //once finished, log it and close connections
-        console.log("Todas las migraciones aplicadas");
+        console.log("👍 Todas las migraciones aplicadas");
         await pool.end();
         process.exit(0);
 
     }catch (error) {
-        console.log(`Error during migrations: ${error}`);
+        console.log(`❌ Error during migrations: ${error}`);
         process.exit(1);
         
     }
