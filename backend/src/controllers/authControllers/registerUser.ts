@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import  { registerUserService } from '../../services/index.js';
-import { User, RegisterUserData } from '../../types/object.types.js';
+import { User, UserData } from '../../types/object.types.js';
 import { Database } from '../../database/Database.js';
 
 /*
@@ -11,7 +11,7 @@ import { Database } from '../../database/Database.js';
  const registerUser = async (req: Request, res: Response, next: NextFunction) => {
     try{
 
-        const user:  RegisterUserData= req.body;
+        const user:  UserData= req.body;
         const registerService = new registerUserService(new Database);
         const newUser: User  = await registerService.registerUser(user);
 
