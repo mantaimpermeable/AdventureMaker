@@ -8,7 +8,7 @@ export type User = {
     lastLogin: Date;
 };
 
-export type RegisterUserData = {
+export type UserData = {
     username: string,
     password: string,
 }
