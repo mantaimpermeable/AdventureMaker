@@ -11,7 +11,7 @@ function Generator() {
         <>
         <Header 
         image={dora}
-        alt={alt}
+        altImage={alt}
         buttonShow={buttonShow}
         direction={direction}
         header={header}
